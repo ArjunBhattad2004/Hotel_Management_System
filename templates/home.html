@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Home</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Home</h1>
+        <div class="list-group">
+            <a href="{{ url_for('add_room') }}" class="list-group-item list-group-item-action">Add Room</a>
+            <a href="{{ url_for('manage_bookings') }}" class="list-group-item list-group-item-action">Manage Bookings</a>
+            <a href="{{ url_for('process_payment') }}" class="list-group-item list-group-item-action">Process Payment</a>
+            <a href="{{ url_for('logout') }}" class="list-group-item list-group-item-action">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

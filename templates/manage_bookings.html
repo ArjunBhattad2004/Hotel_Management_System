@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Manage Bookings</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Manage Bookings</h1>
+        
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Display all bookings -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Room Id</th>
+                    <th>Guest_Id</th>
+                    <th>Booking Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bk in bookings %}
+                <tr>
+                    <td>{{ bk[0] }}</td>
+                    <td>{{ bk[1] }}</td>
+                    <td>{{ bk[2] }}</td>
+                    <td>{{ bk[6] }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('manage_bookings') }}">
+                            <input type="hidden" name="booking_id" value="{{ bk[0] }}">
+                            <select name="status" class="form-control">
+                                <option value="Confirmed" {% if bk[6] == 'Confirmed' %}selected{% endif %}>Confirmed</option>
+                                <option value="Cancelled" {% if bk[6] == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                                <option value="Checked In" {% if bk[6] == 'Checked In' %}selected{% endif %}>Checked In</option>
+                                <option value="Checked Out" {% if bk[6] == 'Checked Out' %}selected{% endif %}>Checked Out</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary mt-2">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
