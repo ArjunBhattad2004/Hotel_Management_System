@@ -1,0 +1,14 @@
+hotel-management/
+├── app.py
+├── templates/
+│   ├── index.html
+│   ├── add_room.html
+│   ├── update_room.html
+│   ├── manage_bookings.html
+│   ├── process_payment.html
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── scripts.js
+└── config.py
